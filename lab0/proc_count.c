@@ -4,12 +4,12 @@
 #include <linux/seq_file.h>
 #include <linux/sched.h>
 
-static struct task_struct *task;
+static struct task_struct *t;
 static struct proc_dir_entry *entry;
 
 static int proc_count(struct seq_file *m, void *v){
 	int count = 0;
-	for_each_process(task)
+	for_each_process(t)
 	{
 		count++;
 	}
