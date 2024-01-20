@@ -4,10 +4,16 @@
 #include <linux/seq_file.h>
 #include <linux/sched.h>
 
+static struct task_struct *task;
 static struct proc_dir_entry *entry;
 
 static int proc_count(struct seq_file *m, void *v){
-	// TODO: it's all yours
+	int count = 0;
+	for_each_process(task)
+	{
+		count++;
+	}
+	seq_printf(m, "%d",count);
 	return 0;
 }
 
@@ -27,6 +33,6 @@ static void __exit proc_count_exit(void)
 module_init(proc_count_init);
 module_exit(proc_count_exit);
 
-MODULE_AUTHOR("Your Name");
+MODULE_AUTHOR("Nicholas Callen");
 MODULE_DESCRIPTION("CS111 lab0 count proc number");
 MODULE_LICENSE("GPL");
